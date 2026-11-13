@@ -10,6 +10,8 @@
   <meta property="og:title" content="fMi Kitchen | Homemade Malabar Delicacies">
   <meta property="og:description" content="വീട്ടിലെ സ്നേഹവും നാടൻ രുചിയും ചേർന്ന സ്വാദിഷ്ടമായ പലഹാരങ്ങളും അച്ചാറുകളും WhatsApp വഴി ഓർഡർ ചെയ്യൂ.">
   <meta property="og:image" content="assets/poster-clean.jpg">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+  <link rel="apple-touch-icon" href="assets/logo.jpg">
 
   <!-- Google Fonts: Inter/Outfit + Noto Sans Malayalam / Manjari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1032,6 +1034,29 @@
       box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
       background: linear-gradient(135deg, #28e06c 0%, #075e54 100%);
     }
+    .btn-copy-order {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #ffffff;
+      color: var(--primary);
+      border: 1.5px solid var(--border-soft);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 20px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+    .btn-copy-order:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
     .order-note-box {
       margin-top: 14px;
       padding: 12px;
@@ -1720,6 +1745,11 @@
               <span>WhatsApp വഴി ഓർഡർ അയക്കാം</span>
             </button>
 
+            <button type="button" class="btn-copy-order" onclick="copyOrderDetails()">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>ഓർഡർ വിവരങ്ങൾ കോപ്പി ചെയ്യാം (Copy Text)</span>
+            </button>
+
             <div class="order-note-box">
               <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               <span>ബട്ടൺ ക്ലിക്ക് ചെയ്യുമ്പോൾ WhatsApp-ൽ തയ്യാറാക്കിയ ഓർഡർ സന്ദേശം തുറക്കും. അയക്കാൻ WhatsApp-ൽ <strong>Send</strong> അമർത്തുക. നിങ്ങളുടെ ഓർഡർ അപ്പപ്പോൾ തന്നെ തയ്യാറാക്കുന്നതാണ്.</span>
@@ -2294,19 +2324,14 @@
       }
     }
 
-    // Order Submission to WhatsApp
-    function handleOrderSubmit(e) {
-      e.preventDefault();
+    // Build Structured Order Message
+    function buildOrderMessage() {
       const keys = Object.keys(cart);
-      if (keys.length === 0) {
-        alert('ദയവായി ആദ്യം വിഭവങ്ങൾ തിരഞ്ഞെടുത്ത് കാർട്ടിൽ ചേർക്കുക.');
-        window.location.hash = '#menu';
-        return;
-      }
+      if (keys.length === 0) return null;
 
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const address = document.getElementById('custAddress').value.trim();
+      const name = document.getElementById('custName').value.trim() || 'നൽകിയിട്ടില്ല (Not provided)';
+      const phone = document.getElementById('custPhone').value.trim() || 'നൽകിയിട്ടില്ല (Not provided)';
+      const address = document.getElementById('custAddress').value.trim() || 'നൽകിയിട്ടില്ല (Not provided)';
       const note = document.getElementById('custNote').value.trim();
       const deliveryTypeEl = document.querySelector('input[name="deliveryType"]:checked');
       const deliveryType = deliveryTypeEl ? deliveryTypeEl.value : 'ഹോം ഡെലിവറി';
@@ -2321,8 +2346,7 @@
         itemsText += `${idx + 1}. *${item.name}* ${item.variant ? '(' + item.variant + ')' : ''} - ${item.qty} എണ്ണം [₹${lineTotal}]\n`;
       });
 
-      const message = 
-`*🍽️ NEW ORDER - fMi Kitchen*
+      return `*🍽️ NEW ORDER - fMi Kitchen*
 ----------------------------------------
 *ഓർഡർ ചെയ്ത വിഭവങ്ങൾ:*
 ${itemsText}
@@ -2336,10 +2360,57 @@ ${itemsText}
 📍 വിലാസം: ${address}
 ${note ? `📝 കുറിപ്പ്: ${note}\n` : ''}----------------------------------------
 _fMi Kitchen വെബ്സൈറ്റ് വഴി തയ്യാറാക്കിയത്_`;
+    }
 
+    // Order Submission to WhatsApp
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      const keys = Object.keys(cart);
+      if (keys.length === 0) {
+        alert('ദയവായി ആദ്യം വിഭവങ്ങൾ തിരഞ്ഞെടുത്ത് കാർട്ടിൽ ചേർക്കുക.');
+        window.location.hash = '#menu';
+        return;
+      }
+
+      const message = buildOrderMessage();
       const encodedMsg = encodeURIComponent(message);
       const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodedMsg}`;
       window.open(waUrl, '_blank');
+    }
+
+    // Copy Order Details to Clipboard
+    function copyOrderDetails() {
+      const keys = Object.keys(cart);
+      if (keys.length === 0) {
+        alert('ദയവായി ആദ്യം വിഭവങ്ങൾ തിരഞ്ഞെടുത്ത് കാർട്ടിൽ ചേർക്കുക.');
+        window.location.hash = '#menu';
+        return;
+      }
+
+      const message = buildOrderMessage();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(message).then(() => {
+          showToast('ഓർഡർ വിവരങ്ങൾ കോപ്പി ചെയ്തു! 📋');
+        }).catch(() => {
+          fallbackCopyText(message);
+        });
+      } else {
+        fallbackCopyText(message);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('ഓർഡർ വിവരങ്ങൾ കോപ്പി ചെയ്തു! 📋');
+      } catch (err) {
+        alert('കോപ്പി ചെയ്യാൻ കഴിഞ്ഞില്ല.');
+      }
+      document.body.removeChild(ta);
     }
 
     // Modal Poster
@@ -2369,6 +2440,11 @@ _fMi Kitchen വെബ്സൈറ്റ് വഴി തയ്യാറാക�
         if (toast.parentNode) toast.parentNode.removeChild(toast);
       }, 3000);
     }
+
+    // Escape key listener for modal
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePosterModal();
+    });
 
     // Initial load
     renderProducts();
