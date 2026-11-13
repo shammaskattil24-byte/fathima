@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173b2b">
+<title>fMi Kitchen | Homemade with love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;500;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--green:#173b2b;--green2:#24583e;--cream:#fff8e9;--gold:#e7a93b;--red:#a82e32;--ink:#203329}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:'Manjari','Poppins',sans-serif}
+header{background:linear-gradient(130deg,#102d21,#286044);color:#fff;padding:18px 5vw 54px;border-radius:0 0 30px 30px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffffff25;border-radius:50%;right:-70px;top:-100px;box-shadow:0 0 0 30px #ffffff0b,0 0 0 60px #ffffff08}
+nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px;position:relative;z-index:1}
+.logo{font:800 25px Poppins,sans-serif;letter-spacing:-1px}.logo span{color:#ff6470}
+.pill{border:1px solid #ffffff65;padding:9px 15px;border-radius:30px;font-size:13px}
+.hero{max-width:1100px;margin:35px auto 0;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;position:relative;z-index:1}
+.kicker{color:#ffd47d;font:600 12px Poppins;letter-spacing:2px;text-transform:uppercase}
+h1{font:800 clamp(34px,5vw,58px)/1.13 Poppins,sans-serif;margin:12px 0}
+.hero p{font-size:18px;line-height:1.7;color:#e5eee7;max-width:520px}
+.hero img{width:100%;max-height:360px;object-fit:cover;border-radius:24px;border:5px solid #ffffff30;box-shadow:0 22px 45px #07190f80;transform:rotate(1deg)}
+.btn{display:inline-block;background:var(--gold);color:#2a2418;text-decoration:none;border:0;border-radius:14px;padding:13px 21px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 5px 0 #a66c20;transition:.2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 0 #a66c20}
+main{max-width:1100px;margin:40px auto;padding:0 5vw}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px}
+h2{font:700 27px Poppins,sans-serif;color:var(--green);margin:0}.sub{color:#718075;margin:5px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}
+.card{background:white;border:1px solid #eee5d4;border-radius:21px;overflow:hidden;box-shadow:0 8px 22px #3b39200c;transition:.25s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px) rotate(-.3deg);box-shadow:0 18px 35px #244b3020}
+.card img{width:100%;height:180px;object-fit:cover;background:#eadfc8}
+.card-body{padding:16px;display:flex;flex-direction:column;flex:1}
+.card h3{margin:0 0 5px;color:var(--green);font-size:20px}
+.desc{margin:0 0 14px;color:#7b837b;font-size:13px;min-height:20px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:8px}
+.price{font:700 20px Poppins;color:var(--red)}
+.add{background:var(--green);color:white;border:0;border-radius:12px;padding:10px 13px;font-family:inherit;font-weight:700;cursor:pointer}
+.cart{margin:36px 0;background:#fff;border-radius:23px;padding:22px;box-shadow:0 10px 28px #3b39200c}
+.cart-line{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #eee}
+.qty button{border:0;background:#edf3ed;border-radius:8px;padding:4px 10px;font-size:17px;cursor:pointer}
+.qty{display:flex;align-items:center;gap:9px}.total{font:700 22px Poppins;color:var(--red);text-align:right;margin:18px 0}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+input,textarea{width:100%;border:1px solid #e3dfd4;border-radius:12px;padding:13px;font:15px inherit;background:#fffdf8}
+textarea{grid-column:1/-1;min-height:85px;resize:vertical}
+form button{grid-column:1/-1}
+.note{font-size:12px;color:#778078;line-height:1.5}
+footer{text-align:center;padding:25px;background:var(--green);color:#dce9df;margin-top:45px}
+@media(max-width:700px){header{padding:16px 5vw 40px}.hero{grid-template-columns:1fr;margin-top:27px;gap:20px}.hero img{max-height:235px;transform:none}.hero p{font-size:16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card img{height:130px}.card-body{padding:12px}.card h3{font-size:17px}.desc{font-size:12px}.price{font-size:17px}.add{padding:9px 10px;font-size:13px}.section-head{align-items:start;flex-direction:column}form{grid-template-columns:1fr}textarea,form button{grid-column:1}.cart{padding:16px}}
+@media(max-width:380px){.grid{grid-template-columns:1fr}.card{display:grid;grid-template-columns:115px 1fr}.card img{height:100%;min-height:140px}.card-body{padding:12px}}
+</style></head>
+<body>
+<header>
+<nav><div class="logo">fM<span>i</span> Kitchen</div><div class="pill">🍃 Good Food · Happy Mood</div></nav>
+<section class="hero">
+<div><div class="kicker">Homemade with love</div><h1>നല്ല രുചി,<br>നല്ല മനസ്സ്!</h1><p>വീട്ടിലെ സ്നേഹവും നാടൻ രുചിയും ചേർന്ന വിഭവങ്ങൾ ഇനി ഓൺലൈനായി ഓർഡർ ചെയ്യാം.</p><a class="btn" href="#menu">വിഭവങ്ങൾ കാണാം ↓</a></div>
+<img src="assets/poster.jpg" alt="fMi Kitchen food menu poster">
+</section></header>
+<main>
+<div class="section-head" id="menu"><div><h2>ഞങ്ങളുടെ വിഭവങ്ങൾ</h2><p class="sub">ഇഷ്ടമുള്ളത് കാർട്ടിൽ ചേർത്ത് WhatsApp വഴി ഓർഡർ ചെയ്യൂ.</p></div></div>
+<div class="grid" id="products"></div>
+<section class="cart" id="cart"><h2>🛒 നിങ്ങളുടെ ഓർഡർ</h2><div id="cartItems"><p class="sub">ഇതുവരെ വിഭവങ്ങൾ തിരഞ്ഞെടുത്തിട്ടില്ല.</p></div><div class="total" id="total">ആകെ: ₹0</div>
+<form id="orderForm">
+<input id="name" placeholder="നിങ്ങളുടെ പേര്" required>
+<input id="phone" placeholder="മൊബൈൽ നമ്പർ" inputmode="tel" required>
+<textarea id="address" placeholder="ഡെലിവറി വിലാസം" required></textarea>
+<button class="btn" type="submit">WhatsApp വഴി ഓർഡർ ചെയ്യൂ</button>
+</form><p class="note">ഓർഡർ WhatsApp-ൽ message ആയി തുറക്കും. അയയ്ക്കാൻ WhatsApp-ൽ Send അമർത്തണം. ഡെലിവറി ചാർജ് ആവശ്യമെങ്കിൽ WhatsApp-ൽ സ്ഥിരീകരിക്കും.</p>
+</section></main>
+<footer>© fMi Kitchen · Made with ❤️ in Kerala<br><small>Order enquiries: 9633648272</small></footer>
+<script>
+const waNumber='919633648272';
+const products=[
+{id:'samosa',name:'സമൂസ',price:450,img:'assets/samosa.jpg',desc:'നാടൻ രുചിയുള്ള സമൂസ'},
+{id:'chattipathiri',name:'ചട്ടിപ്പത്തിരി',price:470,img:'assets/chattipathiri.jpg',desc:'മധുരത്തിലും എരിവിലും'},
+{id:'kozhi',name:'കോഴി അട',price:450,img:'assets/kozhi-ada.jpg',desc:'ചിക്കൻ ഫില്ലിംഗ്'},
+{id:'chickenpickle',name:'ചിക്കൻ അച്ചാർ',price:250,img:'assets/pickles.jpg',desc:'200 ഗ്രാം · ₹250'},
+{id:'beefpickle',name:'ബീഫ് അച്ചാർ',price:250,img:'assets/pickles.jpg',desc:'200 ഗ്രാം · ₹250'},
+{id:'fishpickle',name:'ഫിഷ് അച്ചാർ',price:250,img:'assets/pickles.jpg',desc:'200 ഗ്രാം · ₹250'},
+{id:'prawn',name:'കൊഞ്ച് അച്ചാർ',price:250,img:'assets/pickles.jpg',desc:'200 ഗ്രാം · ₹250'},
+{id:'mussel',name:'കല്ലുമ്മക്കായ അച്ചാർ',price:300,img:'assets/pickles.jpg',desc:'200 ഗ്രാം · ₹300'},
+{id:'papaya',name:'പപ്പായ അച്ചാർ',price:50,img:'assets/pappaya.jpg',desc:'250 ഗ്രാം · ₹50 (200 ഗ്രാം ₹30)'}
+];
+let cart={};
+const productsEl=document.getElementById('products');
+products.forEach(p=>{const el=document.createElement('article');el.className='card';el.innerHTML=`<img src="${p.img}" alt="${p.name}"><div class="card-body"><h3>${p.name}</h3><p class="desc">${p.desc}</p><div class="row"><span class="price">₹${p.price}</span><button class="add" type="button" onclick="addItem('${p.id}')">+ ചേർക്കാം</button></div></div>`;productsEl.appendChild(el)});
+function addItem(id){cart[id]=(cart[id]||0)+1;renderCart()}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];renderCart()}
+function renderCart(){const box=document.getElementById('cartItems');const ids=Object.keys(cart);if(!ids.length){box.innerHTML='<p class="sub">ഇതുവരെ വിഭവങ്ങൾ തിരഞ്ഞെടുത്തിട്ടില്ല.</p>'}else{box.innerHTML=ids.map(id=>{let p=products.find(x=>x.id===id);return `<div class="cart-line"><span>${p.name} · ₹${p.price}</span><span class="qty"><button type="button" onclick="changeQty('${id}',-1)">−</button>${cart[id]}<button type="button" onclick="changeQty('${id}',1)">+</button></span></div>`}).join('')};let total=ids.reduce((s,id)=>s+products.find(p=>p.id===id).price*cart[id],0);document.getElementById('total').textContent='ആകെ: ₹'+total}
+document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();if(!Object.keys(cart).length){alert('ദയവായി ആദ്യം വിഭവങ്ങൾ തിരഞ്ഞെടുക്കൂ.');return}let lines=Object.keys(cart).map(id=>{let p=products.find(x=>x.id===id);return `${p.name} x ${cart[id]} = ₹${p.price*cart[id]}`});let total=Object.keys(cart).reduce((s,id)=>s+products.find(p=>p.id===id).price*cart[id],0);let msg=`*fMi Kitchen - New Order*%0A%0A${encodeURIComponent(lines.join('\n'))}%0A%0A*ആകെ: ₹${total}*%0A%0Aപേര്: ${encodeURIComponent(document.getElementById('name').value)}%0Aഫോൺ: ${encodeURIComponent(document.getElementById('phone').value)}%0Aവിലാസം: ${encodeURIComponent(document.getElementById('address').value)}`;window.open(`https://wa.me/${waNumber}?text=${msg}`,'_blank')});
+</script></body></html>
